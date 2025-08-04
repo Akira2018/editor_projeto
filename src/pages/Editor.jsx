@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import { db, collection, setDoc, doc, getDocs, deleteDoc, auth } from '../firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Importe os ícones do Font Awesome, incluindo os novos para o toggle da biblioteca
 import {
     faSquare, faCircle, faDoorOpen, faWindowMaximize, faFont, faImage, faDrawPolygon, faSave, faFolderOpen, faFileExport, faTrashAlt,
     faCouch, faBed, faChair, faToilet, faSink, faBath, faHandsWash,
-    faSignOutAlt, faFileAlt, faChevronUp, faChevronDown // Adicionados para o toggle da biblioteca
+    faSignOutAlt, faFileAlt, faChevronUp, faChevronDown, faCalculator // <- Adicione faCalculator aqui
 } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './Editor.css'; // Importe seu arquivo CSS
 
@@ -749,6 +749,18 @@ export default function Editor() {
                 <button onClick={handleNewProject} disabled={isLoading} title="Iniciar Novo Projeto">
                     <FontAwesomeIcon icon={faFileAlt} /> Novo Projeto
                 </button>
+                 {/* INÍCIO: Botão para o novo aplicativo */}
+                <a 
+                    href="https://akira2018.github.io/calc_construtor/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    title="Abrir Calculadora de Construção"
+                >
+                    <button>
+                        <FontAwesomeIcon icon={faCalculator} /> Calculadora
+                    </button>
+                </a>
+                {/* FIM: Botão para o novo aplicativo */}
             </div>
 
             <div ref={controlsRef} className="controls-bar">
