@@ -1,0 +1,21 @@
+Estrutura sugerida do projeto
+
+plantas_online_frontend/
+├── node_modules/
+├── public/
+│   └── index.html
+├── src/
+│   ├── components/
+│   │   ├── CanvasEditor.jsx
+│   │   └── Menu.jsx = faltou
+│   ├── pages/
+│   │   ├── Editor.jsx = Faltou         ✅ (era Editor.js ou EditorPage.jsx)
+│   │   ├── Login.jsx
+│   │   ├── Register.jsx
+│   │   └── ProjetoList.jsx
+│   ├── App.css
+│   ├── App.js
+│   ├── index.js
+│   └── routes.js               ⛔ (opcional se quiser separar rotas)
+├── package.json
+└── package-lock.json

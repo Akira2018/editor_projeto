@@ -1,0 +1,52 @@
+/* Seu CSS (certifique-se de ter apenas UMA destas definições de body no seu arquivo CSS) */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  /* Se quiser uma cor simples: */
+  background-color: #BDB76B; /* Cor verde-oliva sutil que você testou */
+  /* OU, se quiser um padrão de imagem: */
+  /* background-image: url('../assets/diagonal-lines.png'); */
+  /* background-repeat: repeat; */
+  /* background-color: #f0f0f5; /* Cor de fallback para a imagem */
+  margin: 0;
+  padding: 0;
+}
+
+.editor-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px;
+  text-align: center;
+  background-color: transparent; /* <--- Torna o fundo do container transparente */
+  /* Ou remova completamente a propriedade background-color do .editor-container se ela existir em outro lugar */
+}
+
+h2 {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.toolbar-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+  padding: 0 10px;
+}
+
+button {
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.canvas-wrapper {
+  display: flex;
+  justify-content: center;
+}

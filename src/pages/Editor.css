@@ -1,0 +1,388 @@
+/* Editor.css */
+
+/* Variáveis CSS para fácil manutenção (Opcional, mas recomendado) */
+:root {
+    --header-bg: #333;
+    --header-text-color: white;
+    --controls-bg: #f9f9f9;
+    --button-primary-bg: #007bff;
+    --button-primary-hover-bg: #0056b3;
+    --button-success-bg: #28a745;
+    --button-success-hover-bg: #218838;
+    --button-danger-bg: #dc3545;
+    --button-danger-hover-bg: #c82333;
+    --button-default-bg: #e9ecef;
+    --button-default-hover-bg: #dee2e6;
+    --border-color: #ddd;
+    --box-shadow-light: 0 2px 5px rgba(0,0,0,0.1);
+    --box-shadow-medium: 0 4px 10px rgba(0,0,0,0.3);
+    --padding-sm: 8px 12px;
+    --padding-md: 10px 20px;
+    --gap-sm: 10px;
+    --gap-md: 15px;
+    --font-size-sm: 0.9em;
+    --font-size-md: 1em;
+}
+
+/* Container Principal do Editor */
+.editor-container {
+    display: flex;
+    flex-direction: column; /* Organiza os filhos em coluna: header, controls, library, canvas */
+    height: 100vh; /* Ocupa a altura total da viewport */
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    overflow: hidden; /* Evita rolagem da página inteira */
+}
+
+/* Cabeçalho */
+.header-bar {
+    background-color: var(--header-bg);
+    color: var(--header-text-color);
+    padding: var(--padding-md);
+    display: flex;
+    justify-content: space-between; /* Alinha itens nas extremidades */
+    align-items: center;
+    box-shadow: var(--box-shadow-light);
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    flex-shrink: 0; /* Não encolhe */
+}
+
+.header-bar h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.user-info {
+    font-size: var(--font-size-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+}
+
+/* Botões do Cabeçalho e da Barra de Controles (estilo geral) */
+.header-bar button,
+.controls-bar button,
+.library-content button {
+    border: none;
+    padding: var(--padding-sm);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    display: flex; /* Para alinhar ícone e texto */
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.header-bar button {
+    background-color: var(--button-success-bg);
+    color: white;
+}
+.header-bar button:hover {
+    background-color: var(--button-success-hover-bg);
+}
+
+/* Barra de Controles Principal */
+.controls-bar {
+    background-color: var(--controls-bg);
+    padding: var(--padding-md);
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem linha em telas menores */
+    gap: var(--gap-md);
+    align-items: center;
+    box-shadow: var(--box-shadow-light);
+    z-index: 900;
+    flex-shrink: 0;
+}
+
+.tool-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.controls-bar label {
+    font-weight: bold;
+    color: #555;
+    font-size: var(--font-size-sm);
+}
+
+.controls-bar select,
+.controls-bar input[type="color"] {
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: var(--font-size-sm);
+    background-color: white;
+    cursor: pointer;
+}
+
+.controls-bar button {
+    background-color: var(--button-default-bg);
+    color: #333;
+    border: 1px solid #ccc;
+}
+.controls-bar button:hover {
+    background-color: var(--button-default-hover-bg);
+}
+
+/* Estilo para o botão de desenhar parede quando ativo */
+.controls-bar button.active {
+    background-color: var(--button-primary-bg) !important; /* !important para garantir precedência */
+    color: white !important;
+}
+
+/* Estilos para botões desabilitados */
+.header-bar button:disabled,
+.controls-bar button:disabled,
+.library-content button:disabled,
+.project-modal-content button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Seção da Biblioteca de Componentes */
+.library-section {
+    flex-shrink: 0; /* Não encolhe */
+    background-color: #f8f8f8;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-top: 10px; /* Espaço da barra de controles */
+}
+
+.library-header {
+    padding: 10px 20px;
+    display: flex;
+    /* Alterado para centralizar o título e o botão de toggle */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center;
+    background-color: #e9e9e9;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    z-index: 8;
+}
+
+/* NOVO: Ajusta o título da biblioteca para centralizar */
+.library-header h2 {
+    margin: 0;
+    font-size: 1em;
+    color: #555;
+    text-align: center; /* Garante que o texto dentro do h2 esteja centralizado */
+    flex-grow: 1; /* Permite que o título ocupe o espaço disponível para centralizar melhor */
+}
+
+/* NOVO: Posiciona o botão de toggle absolutamente para não afetar o centralização do título */
+.library-toggle-button {
+    background: none;
+    border: none;
+    color: var(--button-primary-bg);
+    font-size: 1.2em;
+    padding: 5px;
+    transition: transform 0.3s ease;
+    position: absolute; /* Posiciona o botão de forma absoluta */
+    right: 20px; /* Alinha à direita com um padding */
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%); /* Ajusta para centralização exata */
+}
+
+.library-toggle-button:hover {
+    color: var(--button-primary-hover-bg);
+}
+
+/* Rotação do ícone Chevron */
+.library-toggle-button .fa-chevron-down {
+    transform: rotate(0deg);
+}
+.library-content.collapsed .library-toggle-button .fa-chevron-down {
+    transform: rotate(180deg); /* Quando recolhido, gira para cima */
+}
+
+
+.library-content {
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-sm);
+    overflow: hidden; /* Esconde o conteúdo que excede o max-height */
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 1; /* Padrão: visível */
+    pointer-events: auto; /* Padrão: clicável */
+    max-height: 200px; /* Valor inicial grande para a altura máxima quando expandido */
+    /* Ajuste este valor se adicionar mais itens e eles não couberem */
+
+    /* Centraliza os botões da biblioteca */
+    justify-content: center;
+}
+
+.library-content.collapsed {
+    max-height: 0; /* Recolhe o conteúdo */
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0; /* Faz desaparecer suavemente */
+    pointer-events: none; /* Impede cliques em elementos invisíveis */
+    border-bottom: none;
+}
+
+.library-content button {
+    background-color: var(--button-primary-bg);
+    color: white;
+}
+.library-content button:hover {
+    background-color: var(--button-primary-hover-bg);
+}
+
+
+/* Contêiner do Canvas */
+.canvas-container {
+    flex-grow: 1; /* Permite que o canvas ocupe o espaço vertical restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Adiciona padding ao redor do canvas dentro do seu contêiner */
+    background-color: white;
+    border: 1px solid var(--border-color);
+    margin: 20px; /* Margem externa para afastar o canvas das bordas do container principal */
+    overflow: hidden; /* Essencial para o Fabric.js */
+    position: relative;
+}
+
+/* Modal de Projetos */
+.project-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); /* Overlay semi-transparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000; /* Acima de tudo */
+}
+
+.project-modal-content {
+    background-color: white;
+    padding: 30px; /* Mais padding para melhor visual */
+    border-radius: 10px;
+    width: 90%;
+    max-width: 550px; /* Aumenta a largura máxima */
+    max-height: 80vh;
+    overflow-y: auto; /* Rolagem se o conteúdo for muito grande */
+    position: relative;
+    box-shadow: var(--box-shadow-medium);
+    text-align: left; /* Alinha o texto dentro do modal à esquerda */
+}
+
+.project-modal-content h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    color: #333;
+    font-size: 1.3em;
+}
+
+.project-modal-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0; /* Mais padding */
+    border-bottom: 1px dashed #eee; /* Linha tracejada */
+}
+
+.project-item:last-child {
+    border-bottom: none;
+}
+
+.project-item span {
+    font-weight: bold;
+    color: #444;
+    flex-grow: 1; /* Permite que o nome do projeto ocupe espaço */
+}
+
+.project-item button {
+    margin-left: 10px;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: var(--button-default-bg);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    color: #333;
+}
+
+.project-item button:hover {
+    background-color: var(--button-default-hover-bg);
+}
+
+.project-item button.delete-btn {
+    background-color: var(--button-danger-bg);
+    color: white;
+    border: none;
+}
+
+.project-item button.delete-btn:hover {
+    background-color: var(--button-danger-hover-bg);
+}
+
+.project-modal-close-btn {
+    background-color: var(--button-danger-bg); /* Estilo de botão de fechar */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 20px;
+    width: 100%; /* Ocupa a largura total na parte inferior */
+    box-shadow: none; /* Remove a sombra padrão para não confundir com o X do canto */
+}
+
+.project-modal-close-btn:hover {
+    background-color: var(--button-danger-hover-bg);
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.85); /* Mais opaco */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8em;
+    color: #333;
+    z-index: 3000;
+}
+
+.loading-overlay::before {
+    content: '';
+    border: 6px solid #f3f3f3; /* Light grey */
+    border-top: 6px solid var(--button-primary-bg); /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Estilo para Toastify */
+.Toastify__toast-container {
+    top: 20px;
+    right: 20px;
+}
