@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { fabric } from 'fabric';
+import * as fabric from 'fabric';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { db, collection, setDoc, doc, getDocs, deleteDoc, auth } from '../firebase';
@@ -9,9 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Importe os ícones do Font Awesome, incluindo os novos para o toggle da biblioteca
 import {
-    faSquare, faCircle, faDoorOpen, faWindowMaximize, faFont, faImage, faDrawPolygon, faSave, faFolderOpen, faFileExport, faTrashAlt,
-    faCouch, faBed, faChair, faToilet, faSink, faBath, faHandsWash,
-    faSignOutAlt, faFileAlt, faChevronUp, faChevronDown, faCalculator // <- Adicione faCalculator aqui
+  faSquare, faCircle, faDoorOpen, faWindowMaximize, faFont, faImage, faDrawPolygon, faSave, faFolderOpen, faFileExport, faTrashAlt,
+  faCouch, faBed, faChair, faToilet, faSink, faBath, faHandsWash,
+  faSignOutAlt, faFileAlt, faChevronUp, faChevronDown, faCalculator
 } from '@fortawesome/free-solid-svg-icons';
 
 import './Editor.css'; // Importe seu arquivo CSS
@@ -757,7 +757,7 @@ export default function Editor() {
                     title="Abrir Calculadora de Construção"
                 >
                     <button>
-                        <FontAwesomeIcon icon={faCalculator} /> Calculadora
+                        <FontAwesomeIcon icon={faCalculator} /> Previsão de Custos
                     </button>
                 </a>
                 {/* FIM: Botão para o novo aplicativo */}
