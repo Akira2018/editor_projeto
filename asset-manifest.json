@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/editor_projeto/static/css/main.14b0f350.css",
+    "main.js": "/editor_projeto/static/js/main.7fddebfe.js",
+    "static/media/porta.png": "/editor_projeto/static/media/porta.b4e44fe5272ce7944aaa.png",
+    "static/media/piscina.png": "/editor_projeto/static/media/piscina.84f6f2979ea398d37ace.png",
+    "static/media/pia.png": "/editor_projeto/static/media/pia.9dda696118496a91c40c.png",
+    "static/media/mesa_jantar.png": "/editor_projeto/static/media/mesa_jantar.971894e6486069efc999.png",
+    "static/media/bed.png": "/editor_projeto/static/media/bed.732f07062ddb97f1f5c6.png",
+    "index.html": "/editor_projeto/index.html",
+    "main.14b0f350.css.map": "/editor_projeto/static/css/main.14b0f350.css.map",
+    "main.7fddebfe.js.map": "/editor_projeto/static/js/main.7fddebfe.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.14b0f350.css",
+    "static/js/main.7fddebfe.js"
+  ]
+}
